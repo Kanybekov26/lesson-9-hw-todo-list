@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/lesson-9-hw-todo-list/static/css/main.073c9b0a.css",
+    "main.js": "/lesson-9-hw-todo-list/static/js/main.791f06b9.js",
+    "index.html": "/lesson-9-hw-todo-list/index.html",
+    "main.073c9b0a.css.map": "/lesson-9-hw-todo-list/static/css/main.073c9b0a.css.map",
+    "main.791f06b9.js.map": "/lesson-9-hw-todo-list/static/js/main.791f06b9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.791f06b9.js"
+  ]
+}
