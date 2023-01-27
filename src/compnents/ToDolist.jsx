@@ -9,7 +9,7 @@ const ToDolist = ({ todos, deleteTodo,toggleHandler,editHandler }) => {
           <div>
           <StyledButton onClick={() => deleteTodo(element.id)}>❌</StyledButton>
           <StyledBtn  onClick={()=>toggleHandler(element.id)}>❗</StyledBtn>
-          <button onClick={()=>editHandler(element.title,element.id)}>edit</button>
+          <button onClick={()=>editHandler(element.title,element.id)}>🔄</button>
           </div>
         </Li>
       ))}

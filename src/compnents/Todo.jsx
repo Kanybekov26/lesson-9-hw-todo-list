@@ -61,18 +61,17 @@ const Todo = () => {
     deleteTodo(id);
   };
 
-  // const enabled = enteredText.trim().length > 0
+  const enabled = enteredText.trim().length > 0
 
   return (
     <Container>
-      ghj
       <StyledInput
         type="text"
         placeholder="write your text"
         onChange={changeHandlerInput}
         value={enteredText}
       />
-      <StyledButton onClick={addButtonHandler}>ADD☑️</StyledButton>
+      <StyledButton onClick={addButtonHandler} disabled={!enabled}>ADD☑️</StyledButton>
       <ToDolist
         todos={enteredToDoState}
         deleteTodo={deleteTodo}
