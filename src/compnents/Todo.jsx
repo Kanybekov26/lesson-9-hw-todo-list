@@ -13,22 +13,21 @@ const toDoReducer = (state, action) => {
       },
     ];
   }
-  if(action.type === "TOGGLE_TODO") {
+  if (action.type === "TOGGLE_TODO") {
     return state.map((item) => {
-      if(item.id === action.payload){
+      if (item.id === action.payload) {
         return {
           ...item,
-          completed: !item.completed
-        }
+          completed: !item.completed,
+        };
       }
-      return item
-    })
+      return item;
+    });
   }
 
   if (action.type === "DELETE_TODO") {
     return state.filter((todo) => todo.id !== action.payload);
   }
-
 };
 
 const Todo = () => {
@@ -53,27 +52,33 @@ const Todo = () => {
     setEnteredtoDoDispatch({ type: "DELETE_TODO", payload: id });
   };
 
-  const toggleHandler = (id)=> {
-    setEnteredtoDoDispatch({type:"TOGGLE_TODO",payload:id})
-  }
+  const toggleHandler = (id) => {
+    setEnteredtoDoDispatch({ type: "TOGGLE_TODO", payload: id });
+  };
 
-  const editHandler = (element,id) => {
-    setState(element)
-    deleteTodo(id)
-  }
+  const editHandler = (element, id) => {
+    setState(element);
+    deleteTodo(id);
+  };
 
   // const enabled = enteredText.trim().length > 0
 
   return (
     <Container>
+      ghj
       <StyledInput
-        type="text" 
+        type="text"
         placeholder="write your text"
         onChange={changeHandlerInput}
         value={enteredText}
       />
-      <StyledButton onClick={addButtonHandler} >ADD☑️</StyledButton>
-      <ToDolist todos={enteredToDoState} deleteTodo={deleteTodo} toggleHandler={toggleHandler}editHandler={editHandler} />
+      <StyledButton onClick={addButtonHandler}>ADD☑️</StyledButton>
+      <ToDolist
+        todos={enteredToDoState}
+        deleteTodo={deleteTodo}
+        toggleHandler={toggleHandler}
+        editHandler={editHandler}
+      />
     </Container>
   );
 };
