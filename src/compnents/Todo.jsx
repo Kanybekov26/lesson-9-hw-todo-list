@@ -1,82 +1,52 @@
-import React, { useReducer, useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { TodoContext} from "../store/TodoContext";
 import ToDolist from "./ToDolist";
 
-const toDoReducer = (state, action) => {
-  if (action.type === "ADD_TODO") {
-    return [
-      ...state,
-      {
-        title: action.payload,
-        id: new Date().toString(),
-        completed: false,
-      },
-    ];
-  }
-  if (action.type === "TOGGLE_TODO") {
-    return state.map((item) => {
-      if (item.id === action.payload) {
-        return {
-          ...item,
-          completed: !item.completed,
-        };
-      }
-      return item;
-    });
-  }
-
-  if (action.type === "DELETE_TODO") {
-    return state.filter((todo) => todo.id !== action.payload);
-  }
-};
-
 const Todo = () => {
-  const [enteredToDoState, setEnteredtoDoDispatch] = useReducer(
-    toDoReducer,
-    []
-  );
-  const [enteredText, setState] = useState("");
+  const {addButtonHandler, enteredText,changeInputValue} = useContext(TodoContext);
 
-  console.log(enteredToDoState);
+  // const changeHandlerInput = (event) => {
+  //   cnx.setState(event.target.value);
+  // };
 
-  const changeHandlerInput = (event) => {
-    setState(event.target.value);
-  };
+  // const addButtonHandler = () => {
+  //   cnx.setEnteredtoDoDispatch({ type: "ADD_TODO", payload: cnx.enteredText });
 
-  const addButtonHandler = () => {
-    setEnteredtoDoDispatch({ type: "ADD_TODO", payload: enteredText });
+  //   cnx.setState("");
+  // };
+  // const deleteTodo = (id) => {
+  //   cnx.setEnteredtoDoDispatch({ type: "DELETE_TODO", payload: id });
+  // };
 
-    setState("");
-  };
-  const deleteTodo = (id) => {
-    setEnteredtoDoDispatch({ type: "DELETE_TODO", payload: id });
-  };
+  // const toggleHandler = (id) => {
+  //   cnx.setEnteredtoDoDispatch({ type: "TOGGLE_TODO", payload: id });
+  // };
 
-  const toggleHandler = (id) => {
-    setEnteredtoDoDispatch({ type: "TOGGLE_TODO", payload: id });
-  };
+  // const editHandler = (element, id) => {
+  //   cnx.setState(element);
+  //   deleteTodo(id);
+  // };
 
-  const editHandler = (element, id) => {
-    setState(element);
-    deleteTodo(id);
-  };
-
-  const enabled = enteredText.trim().length > 0
+  // const enabled = enteredText.trim().length > 0;
+  // console.log(cnx);
 
   return (
+ 
     <Container>
       <StyledInput
         type="text"
         placeholder="write your text"
-        onChange={changeHandlerInput}
+        onChange={(e) => changeInputValue(e.target.value)}
         value={enteredText}
       />
-      <StyledButton onClick={addButtonHandler} disabled={!enabled}>ADD☑️</StyledButton>
+      <StyledButton onClick={() => addButtonHandler(enteredText)}>
+        ADD☑️
+      </StyledButton>
       <ToDolist
-        todos={enteredToDoState}
-        deleteTodo={deleteTodo}
-        toggleHandler={toggleHandler}
-        editHandler={editHandler}
+        // deleteTodo={deleteTodo}
+        // toggleHandler={toggleHandler}
+        // editHandler={editHandler}
       />
     </Container>
   );

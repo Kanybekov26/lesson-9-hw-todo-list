@@ -1,15 +1,24 @@
 import styled from "styled-components";
-import React from "react";
-const ToDolist = ({ todos, deleteTodo,toggleHandler,editHandler }) => {
+import React, { useContext } from "react";
+import { TodoContext } from "../store/TodoContext";
+const ToDolist = () => {
+  const {todos,toggleHandler,deleteTodo} = useContext(TodoContext)
   return (
     <Ul>
       {todos.map((element) => (
-        <Li  key={element.id}>
-         <StyledTitle className={`${element.completed ? "todo" : "todoss"} `} >{element.title}</StyledTitle> 
+        <Li key={element.id}>
+          {/* <p>jhmrebnmfd</p> */}
+          <StyledTitle className={`${element.completed ? "todo" : ""} `}>
+            {element.title}
+          </StyledTitle>
           <div>
-          <StyledButton onClick={() => deleteTodo(element.id)}>❌</StyledButton>
-          <StyledBtn  onClick={()=>toggleHandler(element.id)}>❗</StyledBtn>
-          <button onClick={()=>editHandler(element.title,element.id)}>🔄</button>
+            <StyledButton onClick={() => deleteTodo(element.id)}>
+              ❌
+            </StyledButton>
+            <StyledBtn onClick={() => toggleHandler(element.id)}>❗</StyledBtn>
+            <button onClick={()=>{}}>
+              🔄
+            </button>
           </div>
         </Li>
       ))}
@@ -27,13 +36,12 @@ const Li = styled.li`
   border: 1px solid grey;
   border-radius: 10px;
   padding: 5px;
-  margin-bottom:20px;
+  margin-bottom: 20px;
 
   .todo {
     text-decoration: line-through;
-opacity: 0.5;
+    opacity: 0.5;
   }
-
 `;
 
 const Ul = styled.ul`
@@ -57,9 +65,7 @@ const StyledButton = styled.button`
     background-color: #afe6c3;
     transform: scale(1.05);
   }
-`
-
-
+`;
 
 const StyledBtn = styled.button`
   background-color: #c2fbd7;
@@ -82,6 +88,4 @@ const StyledBtn = styled.button`
 
 const StyledTitle = styled.p`
   color: white;
-
-  
-`
+`;
